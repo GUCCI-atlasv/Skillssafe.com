@@ -1,20 +1,18 @@
 # Smithery configuration: https://smithery.ai/docs/build/session-config
+# URL-published HTTP server — configSchema defines optional user settings
 
-startCommand:
-  type: http
-  configSchema:
-    type: object
-    properties:
-      lang:
-        type: string
-        title: Response Language
-        description: "Language for threat descriptions and recommendations in scan results. Defaults to English."
-        enum:
-          - en
-          - zh
-          - ja
-        default: en
-        x-from:
-          query: lang
-  exampleConfig:
-    lang: en
+configSchema:
+  type: object
+  properties:
+    lang:
+      type: string
+      title: Response Language
+      description: "Language for threat descriptions and recommendations in scan results (en = English, zh = Chinese, ja = Japanese). Defaults to English."
+      enum:
+        - en
+        - zh
+        - ja
+      default: en
+
+exampleConfig:
+  lang: en
