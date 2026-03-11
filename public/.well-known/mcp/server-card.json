@@ -1,0 +1,77 @@
+{
+  "serverInfo": {
+    "name": "SkillsSafe",
+    "version": "1.0.0"
+  },
+  "authentication": {
+    "required": false
+  },
+  "tools": [
+    {
+      "name": "scan_skill",
+      "description": "Scan an AI agent skill file (SKILL.md, MCP tool config, or system_prompt) for security threats before installation. Detects credential theft, data exfiltration, prompt injection, hidden zero-width characters, shell injection, reverse shells, memory poisoning, scope creep, and ClawHavoc malware indicators. Returns INSTALL/REVIEW/BLOCK decision with risk score 0–100. Free, no API key required. Supports OpenClaw, Claude Code, Cursor, and Codex skills.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL of the skill to scan. Accepts ClawHub URLs, GitHub raw URLs, or any HTTP-accessible SKILL.md / MCP config file."
+          },
+          "content": {
+            "type": "string",
+            "description": "Raw text content of the skill to scan. Use this when you have the skill content in memory (alternative to url)."
+          },
+          "lang": {
+            "type": "string",
+            "enum": ["en", "zh", "ja"],
+            "default": "en",
+            "description": "Language for threat descriptions and recommendations in the response."
+          }
+        },
+        "oneOf": [
+          { "required": ["url"] },
+          { "required": ["content"] }
+        ]
+      }
+    },
+    {
+      "name": "get_report",
+      "description": "Retrieve a previously generated scan report by scan_id. Returns a link to the full report page at skillssafe.com.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "scan_id": {
+            "type": "string",
+            "description": "The scan ID (e.g. ss_a3f8c901_...) returned by scan_skill"
+          }
+        },
+        "required": ["scan_id"]
+      }
+    }
+  ],
+  "resources": [],
+  "prompts": [
+    {
+      "name": "scan_before_install",
+      "description": "Prompt template to scan an AI agent skill or MCP tool before installing it. Guides the model to use SkillsSafe to verify safety.",
+      "arguments": [
+        {
+          "name": "skill_url",
+          "description": "The URL of the skill or MCP tool to inspect (e.g. a GitHub raw URL or ClawHub link).",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "review_skill_content",
+      "description": "Prompt template to review raw skill content pasted by the user and produce a security assessment.",
+      "arguments": [
+        {
+          "name": "skill_content",
+          "description": "The raw text content of the skill file (SKILL.md, system_prompt, or MCP config).",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
