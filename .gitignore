@@ -12,6 +12,8 @@ out
 # Cloudflare
 .wrangler
 .dev.vars
+Skillssafe.com/
+
 # Env
 .env
 .env.local

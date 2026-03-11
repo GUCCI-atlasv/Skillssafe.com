@@ -5,6 +5,9 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import ZeroWidthDetector from "@/components/scanner/ZeroWidthDetector";
 
+const BASE_URL = "https://skillssafe.com";
+const PAGE_PATH = "zero-width-detector";
+
 export async function generateMetadata({
   params,
 }: {
@@ -12,9 +15,50 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "zeroWidth" });
+
+  const ogLocale =
+    locale === "zh" ? "zh_CN" : locale === "ja" ? "ja_JP" : "en_US";
+
   return {
-    title: `${t("title")} — SkillsSafe`,
-    description: t("description"),
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    keywords: t("metaKeywords"),
+    alternates: {
+      canonical: `/${locale}/${PAGE_PATH}`,
+      languages: {
+        en: `/en/${PAGE_PATH}`,
+        zh: `/zh/${PAGE_PATH}`,
+        ja: `/ja/${PAGE_PATH}`,
+        "x-default": `/en/${PAGE_PATH}`,
+      },
+    },
+    openGraph: {
+      title: t("metaTitle"),
+      description: t("metaDescription"),
+      siteName: "SkillsSafe",
+      locale: ogLocale,
+      type: "website",
+      url: `${BASE_URL}/${locale}/${PAGE_PATH}`,
+      images: [
+        {
+          url: `${BASE_URL}/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: t("metaTitle"),
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("metaTitle"),
+      description: t("metaDescription"),
+      images: [`${BASE_URL}/og-image.png`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true },
+    },
   };
 }
 

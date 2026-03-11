@@ -2,24 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { getRequestContext } from "@cloudflare/next-on-pages";
 import { scanContent, type Lang } from "@/lib/scanner/engine";
 import { saveReport } from "@/lib/db/reports";
+import { checkRateLimit, rateLimitHeaders } from "@/lib/utils/rate-limit";
 
 export const runtime = "edge";
-
-const RATE_LIMIT_MAP = new Map<string, { count: number; reset: number }>();
-
-function getRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const window = 60 * 60 * 1000;
-  const limit = 200;
-  const entry = RATE_LIMIT_MAP.get(ip);
-  if (!entry || now > entry.reset) {
-    RATE_LIMIT_MAP.set(ip, { count: 1, reset: now + window });
-    return true;
-  }
-  if (entry.count >= limit) return false;
-  entry.count++;
-  return true;
-}
 
 function getDB() {
   try {
@@ -36,10 +21,13 @@ export async function POST(req: NextRequest) {
     req.headers.get("x-forwarded-for") ||
     "unknown";
 
-  if (!getRateLimit(ip)) {
+  const rl = checkRateLimit(ip, 200);
+  const rlHeaders = rateLimitHeaders(rl);
+
+  if (!rl.allowed) {
     return NextResponse.json(
       { error: "Rate limit exceeded. 200 requests/hour.", code: 429 },
-      { status: 429 }
+      { status: 429, headers: rlHeaders }
     );
   }
 
@@ -92,6 +80,7 @@ export async function POST(req: NextRequest) {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type",
+        ...rlHeaders,
       },
     }
   );

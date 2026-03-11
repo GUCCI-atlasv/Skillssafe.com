@@ -1,0 +1,59 @@
+{
+  "name": "SkillsSafe",
+  "description": "Free AI agent skill security scanner. Scan any SKILL.md, MCP config, or system_prompt for credential theft, data exfiltration, prompt injection, and ClawHavoc malware indicators before installation.",
+  "url": "https://mcp.skillssafe.com/sse",
+  "transport": "sse",
+  "authentication": "none",
+  "free": true,
+  "rate_limit": "60 requests/hour per IP",
+  "languages": ["en", "zh", "ja"],
+  "tools": [
+    {
+      "name": "scan_skill",
+      "description": "Scan an AI agent skill file (SKILL.md, MCP tool config, or system_prompt) for security threats before installation. Detects credential theft, data exfiltration, prompt injection, hidden zero-width characters, shell injection, reverse shells, memory poisoning, scope creep, and ClawHavoc malware indicators. Returns INSTALL/REVIEW/BLOCK decision with risk score 0–100. Free, no API key required.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL of the skill to scan. Accepts ClawHub URLs, GitHub raw URLs, or any HTTP-accessible SKILL.md / MCP config file."
+          },
+          "content": {
+            "type": "string",
+            "description": "Raw text content of the skill to scan. Use this when you have the skill content in memory (alternative to url)."
+          },
+          "lang": {
+            "type": "string",
+            "enum": ["en", "zh", "ja"],
+            "default": "en",
+            "description": "Language for threat descriptions and recommendations in the response."
+          }
+        },
+        "oneOf": [
+          { "required": ["url"] },
+          { "required": ["content"] }
+        ]
+      }
+    },
+    {
+      "name": "get_report",
+      "description": "Retrieve a previously generated scan report by scan_id.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "scan_id": {
+            "type": "string",
+            "description": "The scan ID returned by scan_skill"
+          }
+        },
+        "required": ["scan_id"]
+      }
+    }
+  ],
+  "rest_api": {
+    "base_url": "https://skillssafe.com/api/v1",
+    "openapi_spec": "https://skillssafe.com/api/v1/openapi.json",
+    "rate_limit": "200 requests/hour per IP"
+  },
+  "integration_guide": "https://skillssafe.com/en/integrate"
+}

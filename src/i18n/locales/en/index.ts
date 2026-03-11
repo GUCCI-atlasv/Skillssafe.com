@@ -1,14 +1,17 @@
 const messages = {
   meta: {
-    title: "SkillsSafe — Free AI Agent Skill Security Scanner",
+    title: "SkillsSafe — Free AI Skill Security Scanner | Check Before You Install",
     description:
-      "Free AI skill security scanner. Scan SKILL.md, MCP configs, and system prompts for malware, credential theft, and prompt injection. No signup required.",
+      "Free security scanner for AI agent skills. Scan any SKILL.md, MCP config, or system_prompt for credential theft, data exfiltration, and prompt injection. Supports OpenClaw, Claude Code, Cursor, Codex. No signup required.",
+    keywords:
+      "AI skill scanner, SKILL.md security, MCP skill security, OpenClaw security, agent skill audit, free skill scanner, prompt injection scanner, zero width character detector, hidden unicode checker",
   },
   nav: {
     scanner: "Scanner",
     zeroWidth: "Zero-Width Detector",
     api: "API Docs",
     mcp: "MCP Server",
+    integrate: "Integrate",
   },
   hero: {
     badge: "100% Free · No Signup · No Rate Limits for Humans",
@@ -88,6 +91,11 @@ const messages = {
     otherPlatforms: "Also supported:",
   },
   zeroWidth: {
+    metaTitle: "Zero-Width Character Detector — Find Hidden Unicode in Text | SkillsSafe",
+    metaDescription:
+      "Free online tool to detect and visualize zero-width characters (U+200B, U+200C, U+200D, U+FEFF) hidden in text. See exactly where invisible Unicode characters are hiding. Used for AI skill security auditing.",
+    metaKeywords:
+      "zero width character detector, hidden unicode checker, invisible text finder, zero-width space detector, U+200B detector, prompt injection detection, AI skill security",
     title: "Zero-Width Character Detector",
     subtitle:
       "Detect invisible Unicode characters hidden in AI skill files and prompts",
@@ -134,6 +142,34 @@ const messages = {
     backToScanner: "← Back to Scanner",
     shareLink: "Share this report",
     copied: "Link copied!",
+  },
+  integrate: {
+    metaTitle: "Integrate SkillsSafe with Your AI Agent | MCP Server & REST API",
+    metaDescription:
+      "Connect SkillsSafe to OpenClaw, Claude Code, Cursor, or any MCP-compatible agent in one line. Free MCP server, REST API, and OpenAPI spec. No signup required.",
+    badge: "Agent Integration Guide",
+    title: "Integrate SkillsSafe with Your Agent",
+    subtitle:
+      "Add AI skill security scanning to any agent in under a minute. Free, no API key required.",
+    mcpSection: "MCP Server (Recommended)",
+    mcpDesc:
+      "Native MCP integration. Your agent scans skills automatically before installation.",
+    restSection: "REST API",
+    restDesc:
+      "Direct HTTP calls. Works with any agent, script, or CI/CD pipeline.",
+    discoverySection: "Auto-Discovery",
+    discoveryDesc:
+      "Agents can automatically discover SkillsSafe capabilities without prior configuration.",
+    rateLimitSection: "Rate Limits",
+    free: "All free · No API key required",
+    openclawLabel: "OpenClaw (one-line setup)",
+    claudeLabel: "Claude Code / Claude Desktop",
+    cursorLabel: "Cursor",
+    codexLabel: "Codex / any MCP agent",
+    scanContent: "Scan by content",
+    scanUrl: "Scan by URL",
+    openapiLabel: "OpenAPI Spec (machine-readable)",
+    mcpDiscoveryLabel: "MCP Discovery (auto-config)",
   },
   footer: {
     tagline: "Free AI Skill Security Scanner",

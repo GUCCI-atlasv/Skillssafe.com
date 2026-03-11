@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Shield, Menu, X, Globe } from "lucide-react";
 
 const LOCALES = [
@@ -18,13 +18,31 @@ export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
 
-  const pathWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
+  useEffect(() => {
+    if (!langOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [langOpen]);
+
+  // Replace first path segment (the locale) to build the switched URL
+  function switchedPath(targetLocale: string) {
+    const segments = pathname.split("/");
+    segments[1] = targetLocale;
+    return segments.join("/") || "/";
+  }
 
   const navLinks = [
     { href: `/${locale}`, label: t("scanner") },
     { href: `/${locale}/zero-width-detector`, label: t("zeroWidth") },
     { href: `/${locale}/api-docs`, label: t("api") },
+    { href: `/${locale}/integrate`, label: t("integrate") },
   ];
 
   return (
@@ -55,7 +73,7 @@ export default function Navbar() {
             ))}
 
             {/* Language switcher */}
-            <div className="relative">
+            <div className="relative" ref={langRef}>
               <button
                 onClick={() => setLangOpen(!langOpen)}
                 className="flex items-center gap-1 rounded-md px-3 py-1.5 text-sm text-gray-400 hover:bg-gray-800 hover:text-white"
@@ -68,7 +86,7 @@ export default function Navbar() {
                   {LOCALES.map((l) => (
                     <Link
                       key={l.code}
-                      href={`/${l.code}${pathWithoutLocale}`}
+                      href={switchedPath(l.code)}
                       className={`block px-4 py-2 text-sm hover:bg-gray-800 ${
                         l.code === locale
                           ? "text-green-400"
@@ -112,7 +130,7 @@ export default function Navbar() {
               {LOCALES.map((l) => (
                 <Link
                   key={l.code}
-                  href={`/${l.code}${pathWithoutLocale}`}
+                  href={switchedPath(l.code)}
                   className={`block py-2 text-sm ${
                     l.code === locale ? "text-green-400" : "text-gray-400 hover:text-white"
                   }`}

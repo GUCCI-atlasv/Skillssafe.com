@@ -1,14 +1,17 @@
 const messages = {
   meta: {
-    title: "SkillsSafe — 無料 AI エージェントスキルセキュリティスキャナー",
+    title: "SkillsSafe — 無料 AI スキルセキュリティスキャナー | インストール前にチェック",
     description:
-      "無料のAIスキルセキュリティスキャナー。SKILL.md、MCP設定、system_promptの安全性を確認。登録不要、資格情報の盗難・データ漏洩・プロンプトインジェクションを検出。",
+      "無料の AI エージェントスキルセキュリティスキャナー。SKILL.md、MCP設定、system_promptをスキャンし、認証情報の窃取、データ流出、プロンプトインジェクションを検出。OpenClaw、Claude Code、Cursor、Codex対応。登録不要。",
+    keywords:
+      "AIスキルセキュリティスキャナー, スキル安全チェック, MCPセキュリティ, OpenClawセキュリティ, エージェントスキル監査, プロンプトインジェクション検出, ゼロ幅文字検出",
   },
   nav: {
     scanner: "スキャナー",
     zeroWidth: "ゼロ幅文字検出",
     api: "API ドキュメント",
     mcp: "MCP サーバー",
+    integrate: "統合ガイド",
   },
   hero: {
     badge: "100% 無料 · 登録不要 · レート制限なし",
@@ -89,6 +92,11 @@ const messages = {
     otherPlatforms: "その他の対応プラットフォーム：",
   },
   zeroWidth: {
+    metaTitle: "ゼロ幅文字検出ツール — テキスト内の隠れたUnicode文字を発見 | SkillsSafe",
+    metaDescription:
+      "無料のゼロ幅文字検出オンラインツール。テキスト内に隠されたゼロ幅文字（U+200B、U+200C、U+200D、U+FEFF）を検出し可視化します。不可視文字の正確な位置を表示。AIスキルセキュリティ監査に使用。",
+    metaKeywords:
+      "ゼロ幅文字検出, ゼロ幅文字チェッカー, 不可視文字検出ツール, 隠しUnicode検出, プロンプトインジェクション検出, AIスキルセキュリティ",
     title: "ゼロ幅文字検出ツール",
     subtitle: "AIスキルファイルとプロンプトに隠された不可視Unicode文字を検出",
     description:
@@ -135,6 +143,30 @@ const messages = {
     backToScanner: "← スキャナーに戻る",
     shareLink: "このレポートを共有",
     copied: "リンクがコピーされました！",
+  },
+  integrate: {
+    metaTitle: "SkillsSafeをAIエージェントに統合 | MCPサーバー & REST API",
+    metaDescription:
+      "1行のコマンドでOpenClaw、Claude Code、Cursor、またはMCP互換エージェントにSkillsSafeを接続。無料MCPサーバー、REST API、OpenAPI仕様。サインアップ不要。",
+    badge: "エージェント統合ガイド",
+    title: "SkillsSafeをエージェントに統合",
+    subtitle: "1分以内に任意のエージェントにAIスキルセキュリティスキャンを追加。無料、APIキー不要。",
+    mcpSection: "MCPサーバー（推奨）",
+    mcpDesc: "ネイティブMCP統合。エージェントがインストール前に自動でスキルをスキャン。",
+    restSection: "REST API",
+    restDesc: "直接HTTP呼び出し。エージェント、スクリプト、CI/CDパイプラインに対応。",
+    discoverySection: "自動検出",
+    discoveryDesc: "事前設定なしでエージェントがSkillsSafeの機能を自動検出。",
+    rateLimitSection: "レート制限",
+    free: "すべて無料 · APIキー不要",
+    openclawLabel: "OpenClaw（1行セットアップ）",
+    claudeLabel: "Claude Code / Claude Desktop",
+    cursorLabel: "Cursor",
+    codexLabel: "Codex / 任意のMCPエージェント",
+    scanContent: "コンテンツでスキャン",
+    scanUrl: "URLでスキャン",
+    openapiLabel: "OpenAPI仕様（機械可読）",
+    mcpDiscoveryLabel: "MCP自動検出",
   },
   footer: {
     tagline: "無料AIスキルセキュリティスキャナー",

@@ -41,36 +41,41 @@ const TOOLS = [
   {
     name: "scan_skill",
     description:
-      "Scan an AI skill file for security threats before installation. Returns INSTALL/REVIEW/BLOCK decision with threat details.",
+      "Scan an AI agent skill file (SKILL.md, MCP tool config, or system_prompt) for security threats before installation. Detects credential theft, data exfiltration, prompt injection, hidden zero-width characters, shell injection, reverse shells, memory poisoning, scope creep, and ClawHavoc malware indicators. Returns INSTALL/REVIEW/BLOCK decision with risk score 0–100. Free, no API key required. Supports OpenClaw, Claude Code, Cursor, and Codex skills.",
     inputSchema: {
       type: "object",
       properties: {
         url: {
           type: "string",
-          description: "URL of the skill file to scan (ClawHub URL, GitHub raw URL, etc.)",
+          description:
+            "URL of the skill to scan. Accepts ClawHub URLs, GitHub raw URLs, or any HTTP-accessible SKILL.md / MCP config file.",
         },
         content: {
           type: "string",
-          description: "Direct content of the skill file to scan (SKILL.md, system_prompt, MCP config)",
+          description:
+            "Raw text content of the skill to scan. Use this when you have the skill content in memory (alternative to url).",
         },
         lang: {
           type: "string",
           enum: ["en", "zh", "ja"],
-          description: "Language for threat descriptions (default: en)",
+          default: "en",
+          description:
+            "Language for threat descriptions and recommendations in the response.",
         },
       },
-      anyOf: [{ required: ["url"] }, { required: ["content"] }],
+      oneOf: [{ required: ["url"] }, { required: ["content"] }],
     },
   },
   {
     name: "get_report",
-    description: "Get a brief summary for a scan ID. Full reports available at skillssafe.com/report/{scan_id}",
+    description:
+      "Retrieve a previously generated scan report by scan_id. Returns a link to the full report page at skillssafe.com.",
     inputSchema: {
       type: "object",
       properties: {
         scan_id: {
           type: "string",
-          description: "The scan ID returned from scan_skill",
+          description: "The scan ID (e.g. ss_a3f8c901_...) returned by scan_skill",
         },
       },
       required: ["scan_id"],

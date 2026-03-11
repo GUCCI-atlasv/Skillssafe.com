@@ -1,14 +1,17 @@
 const messages = {
   meta: {
-    title: "SkillsSafe — 免费 AI Agent 技能安全扫描器",
+    title: "SkillsSafe — 免费 AI 技能安全扫描器 | 安装前先检查",
     description:
-      "免费 AI 技能安全扫描，支持 SKILL.md、MCP 配置、system_prompt 安全检测。无需注册，检测凭证窃取、数据外传、提示注入和隐藏字符。",
+      "免费 AI Agent 技能安全扫描工具。扫描任何 SKILL.md、MCP 配置或 system_prompt，检测凭证窃取、数据外传和提示注入。支持 OpenClaw、Claude Code、Cursor、Codex。无需注册。",
+    keywords:
+      "AI技能安全检测, SKILL.md安全扫描, OpenClaw技能审计, MCP安全检查, Agent技能安全, 免费技能扫描器, 提示注入检测, 零宽字符检测",
   },
   nav: {
     scanner: "扫描器",
     zeroWidth: "零宽字符检测",
     api: "API 文档",
     mcp: "MCP Server",
+    integrate: "接入指南",
   },
   hero: {
     badge: "100% 免费 · 无需注册 · 无速率限制",
@@ -86,6 +89,11 @@ const messages = {
     otherPlatforms: "同样支持：",
   },
   zeroWidth: {
+    metaTitle: "零宽字符检测工具 — 发现文本中隐藏的 Unicode 字符 | SkillsSafe",
+    metaDescription:
+      "免费在线零宽字符检测工具。检测并可视化文本中隐藏的零宽字符（U+200B、U+200C、U+200D、U+FEFF）。精确显示不可见字符的位置。用于 AI 技能安全审计。",
+    metaKeywords:
+      "零宽字符检测工具, 零宽字符检测, 隐藏Unicode检测, 不可见字符查找, 提示注入检测, AI技能安全审计",
     title: "零宽字符检测工具",
     subtitle: "检测 AI 技能文件和提示词中隐藏的不可见 Unicode 字符",
     description:
@@ -131,6 +139,30 @@ const messages = {
     backToScanner: "← 返回扫描器",
     shareLink: "分享此报告",
     copied: "链接已复制！",
+  },
+  integrate: {
+    metaTitle: "将 SkillsSafe 接入你的 AI Agent | MCP Server 与 REST API",
+    metaDescription:
+      "一行命令将 SkillsSafe 接入 OpenClaw、Claude Code、Cursor 或任何 MCP Agent。免费 MCP Server、REST API 和 OpenAPI 规范，无需注册。",
+    badge: "Agent 集成指南",
+    title: "将 SkillsSafe 接入你的 Agent",
+    subtitle: "一分钟内为任意 Agent 添加 AI 技能安全扫描。免费，无需 API Key。",
+    mcpSection: "MCP Server（推荐）",
+    mcpDesc: "原生 MCP 集成，Agent 在安装技能前自动扫描安全性。",
+    restSection: "REST API",
+    restDesc: "直接 HTTP 调用，适用于任何 Agent、脚本或 CI/CD 流水线。",
+    discoverySection: "自动发现",
+    discoveryDesc: "Agent 无需预先配置即可自动发现 SkillsSafe 能力。",
+    rateLimitSection: "速率限制",
+    free: "全部免费 · 无需 API Key",
+    openclawLabel: "OpenClaw（一行命令）",
+    claudeLabel: "Claude Code / Claude Desktop",
+    cursorLabel: "Cursor",
+    codexLabel: "Codex / 任意 MCP Agent",
+    scanContent: "按内容扫描",
+    scanUrl: "按 URL 扫描",
+    openapiLabel: "OpenAPI 规范（机器可读）",
+    mcpDiscoveryLabel: "MCP 自动发现",
   },
   footer: {
     tagline: "免费 AI 技能安全扫描器",
