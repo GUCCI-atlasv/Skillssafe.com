@@ -184,6 +184,50 @@ const messages = {
     copyright: "© 2026 SkillsSafe.com · All rights reserved",
     disclaimer:
       "SkillsSafe is an independent security tool, not affiliated with Anthropic, OpenClaw, or Cisco.",
+    support: "Support",
+    feedback: "Send Feedback",
+    feedbackDesc: "Bug reports, false positives, feature requests",
+    emailLabel: "Email",
+  },
+  feedback: {
+    metaTitle: "Feedback & Support — SkillsSafe",
+    metaDescription:
+      "Report bugs, false positives, or suggest features for SkillsSafe. Contact support@skillssafe.com.",
+    badge: "Feedback & Support",
+    title: "We'd Love to Hear From You",
+    subtitle:
+      "Report bugs, false positives, suggest features, or just say hello.",
+    emailAlt: "Or email us directly:",
+    typeLabel: "Feedback Type",
+    titleLabel: "Title",
+    titlePlaceholder: "Brief summary of your feedback",
+    descLabel: "Description",
+    descPlaceholder: "Please describe the issue or suggestion in detail...",
+    skillUrlLabel: "Skill URL or Scan ID (optional)",
+    skillUrlPlaceholder: "https://clawhub.ai/skills/... or ss_a3f8c901...",
+    emailOptLabel: "Your Email (optional)",
+    emailOptPlaceholder: "For follow-up replies",
+    submit: "Open in Email Client",
+    submitNote:
+      "This will open your email client with a pre-filled draft.",
+    successTitle: "Email draft ready!",
+    successDesc:
+      "Please send the email from your email client. We typically reply within 2 business days.",
+    responseTime: "Typical response: 2 business days",
+    types: {
+      bug: "🐛 Bug Report",
+      false_positive: "⚠️ False Positive",
+      feature: "💡 Feature Request",
+      security: "🔒 Security Issue",
+      other: "📧 Other",
+    },
+    typeDesc: {
+      bug: "Something isn't working correctly",
+      false_positive: "A safe skill was incorrectly flagged",
+      feature: "Suggest a new feature or improvement",
+      security: "Report a security vulnerability (handled confidentially)",
+      other: "General feedback or questions",
+    },
   },
 };
 

@@ -14,6 +14,7 @@ const PAGES: PageConfig[] = [
   { path: "/zero-width-detector", priority: 0.9, changeFrequency: "weekly" },
   { path: "/integrate", priority: 0.8, changeFrequency: "weekly" },
   { path: "/api-docs", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/feedback", priority: 0.5, changeFrequency: "monthly" },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

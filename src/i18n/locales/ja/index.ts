@@ -181,6 +181,49 @@ const messages = {
     copyright: "© 2026 SkillsSafe.com · All rights reserved",
     disclaimer:
       "SkillsSafeは独立したセキュリティツールであり、Anthropic、OpenClaw、またはCiscoとは無関係です。",
+    support: "サポート",
+    feedback: "フィードバックを送る",
+    feedbackDesc: "バグ報告、誤検知、機能リクエスト",
+    emailLabel: "メール",
+  },
+  feedback: {
+    metaTitle: "フィードバック & サポート — SkillsSafe",
+    metaDescription:
+      "バグ報告、誤検知の報告、機能リクエストをお送りください。support@skillssafe.com",
+    badge: "フィードバック & サポート",
+    title: "ご意見をお聞かせください",
+    subtitle:
+      "バグ報告、誤検知、機能リクエスト、またはお気軽にご連絡ください。",
+    emailAlt: "または直接メールでお送りください：",
+    typeLabel: "フィードバックの種類",
+    titleLabel: "タイトル",
+    titlePlaceholder: "フィードバックの簡単な概要",
+    descLabel: "説明",
+    descPlaceholder: "問題や提案を詳しく説明してください...",
+    skillUrlLabel: "スキルURL またはスキャンID（任意）",
+    skillUrlPlaceholder: "https://clawhub.ai/skills/... または ss_a3f8c901...",
+    emailOptLabel: "メールアドレス（任意）",
+    emailOptPlaceholder: "返信先として使用します",
+    submit: "メールクライアントで開く",
+    submitNote: "クリックすると、下書きが入力済みのメールクライアントが開きます。",
+    successTitle: "メールの下書きが完成しました！",
+    successDesc:
+      "メールクライアントから送信してください。通常2営業日以内に返信します。",
+    responseTime: "通常の返信時間：2営業日",
+    types: {
+      bug: "🐛 バグ報告",
+      false_positive: "⚠️ 誤検知",
+      feature: "💡 機能リクエスト",
+      security: "🔒 セキュリティ問題",
+      other: "📧 その他",
+    },
+    typeDesc: {
+      bug: "正常に動作していない機能があります",
+      false_positive: "安全なスキルが誤ってフラグされました",
+      feature: "新機能または改善を提案します",
+      security: "セキュリティの脆弱性を報告（機密に取り扱います）",
+      other: "一般的なフィードバックや質問",
+    },
   },
 };
 

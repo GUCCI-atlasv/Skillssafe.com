@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import { Shield } from "lucide-react";
+import { Shield, Mail, MessageSquareHeart } from "lucide-react";
+
+const SUPPORT_EMAIL = "support@skillssafe.com";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -12,6 +14,7 @@ export default function Footer() {
     <footer className="border-t border-gray-800 bg-gray-950 py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2">
@@ -21,7 +24,9 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-2 text-sm text-gray-500">{t("tagline")}</p>
-            <p className="mt-4 text-xs text-gray-600">{t("disclaimer")}</p>
+            <p className="mt-4 text-xs text-gray-600 leading-relaxed">
+              {t("disclaimer")}
+            </p>
           </div>
 
           {/* Links */}
@@ -54,38 +59,73 @@ export default function Footer() {
                   {t("api")}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={`/${locale}/integrate`}
+                  className="hover:text-gray-300 transition-colors"
+                >
+                  {t("mcp")}
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Stats placeholder */}
+          {/* Support & Legal */}
           <div>
             <h3 className="mb-3 text-sm font-semibold text-gray-400">
-              Platform
+              {t("support")}
             </h3>
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { label: "Scans", value: "0" },
-                { label: "Rules", value: "20+" },
-                { label: "Languages", value: "3" },
-                { label: "Cost", value: "Free" },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-lg bg-gray-900 p-3 text-center"
+            <ul className="space-y-2 text-sm text-gray-500">
+              <li>
+                <a
+                  href={`mailto:${SUPPORT_EMAIL}`}
+                  className="inline-flex items-center gap-1.5 hover:text-gray-300 transition-colors"
                 >
-                  <div className="text-lg font-bold text-green-400">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs text-gray-500">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+                  <Mail className="h-3.5 w-3.5 text-gray-600" />
+                  <span className="font-mono text-green-400/80 hover:text-green-400">
+                    {SUPPORT_EMAIL}
+                  </span>
+                </a>
+              </li>
+              <li>
+                <Link
+                  href={`/${locale}/feedback`}
+                  className="inline-flex items-center gap-1.5 hover:text-gray-300 transition-colors"
+                >
+                  <MessageSquareHeart className="h-3.5 w-3.5 text-gray-600" />
+                  {t("feedback")}
+                </Link>
+              </li>
+              <li className="text-xs text-gray-700">{t("feedbackDesc")}</li>
+            </ul>
+
+            <h3 className="mb-3 mt-6 text-sm font-semibold text-gray-400">
+              {t("legal")}
+            </h3>
+            <ul className="space-y-2 text-sm text-gray-500">
+              <li>
+                <a
+                  href={`mailto:${SUPPORT_EMAIL}?subject=Privacy%20Policy%20Inquiry`}
+                  className="hover:text-gray-300 transition-colors"
+                >
+                  {t("privacy")}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${SUPPORT_EMAIL}?subject=Terms%20of%20Service%20Inquiry`}
+                  className="hover:text-gray-300 transition-colors"
+                >
+                  {t("terms")}
+                </a>
+              </li>
+            </ul>
           </div>
+
         </div>
 
-        <div className="mt-8 border-t border-gray-800 pt-6 flex flex-col items-center gap-1 text-center">
-          <p className="text-xs text-gray-500">{t("copyright")}</p>
-          <p className="text-xs text-gray-700">{t("disclaimer")}</p>
+        <div className="mt-8 border-t border-gray-800 pt-6 text-center">
+          <p className="text-xs text-gray-600">{t("copyright")}</p>
         </div>
       </div>
     </footer>
