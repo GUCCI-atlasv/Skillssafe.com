@@ -1,0 +1,16 @@
+name = "skillssafe"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "eaed5ad923a74267ba0b066f0d3679e4"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "skillssafe-db"
+database_id = "4521c6dd-0fdd-4985-9b3c-4d46d28226ee"
+
+[vars]
+NEXT_PUBLIC_BASE_URL = "https://skillssafe.com"
