@@ -35,6 +35,7 @@ const SERVER_INFO = {
 
 const CAPABILITIES = {
   tools: {},
+  prompts: {},
 };
 
 const TOOLS = [
@@ -42,6 +43,12 @@ const TOOLS = [
     name: "scan_skill",
     description:
       "Scan an AI agent skill file (SKILL.md, MCP tool config, or system_prompt) for security threats before installation. Detects credential theft, data exfiltration, prompt injection, hidden zero-width characters, shell injection, reverse shells, memory poisoning, scope creep, and ClawHavoc malware indicators. Returns INSTALL/REVIEW/BLOCK decision with risk score 0–100. Free, no API key required. Supports OpenClaw, Claude Code, Cursor, and Codex skills.",
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       type: "object",
       properties: {
@@ -70,6 +77,12 @@ const TOOLS = [
     name: "get_report",
     description:
       "Retrieve a previously generated scan report by scan_id. Returns a link to the full report page at skillssafe.com.",
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
+    },
     inputSchema: {
       type: "object",
       properties: {
@@ -82,6 +95,54 @@ const TOOLS = [
     },
   },
 ];
+
+const PROMPTS = [
+  {
+    name: "scan_before_install",
+    description:
+      "Prompt template to scan an AI agent skill or MCP tool before installing it. Guides the model to use SkillsSafe to verify safety.",
+    arguments: [
+      {
+        name: "skill_url",
+        description: "The URL of the skill or MCP tool to inspect (e.g. a GitHub raw URL or ClawHub link).",
+        required: true,
+      },
+    ],
+  },
+  {
+    name: "review_skill_content",
+    description:
+      "Prompt template to review raw skill content pasted by the user and produce a security assessment.",
+    arguments: [
+      {
+        name: "skill_content",
+        description: "The raw text content of the skill file (SKILL.md, system_prompt, or MCP config).",
+        required: true,
+      },
+    ],
+  },
+];
+
+const PROMPT_MESSAGES: Record<string, (args: Record<string, string>) => unknown[]> = {
+  scan_before_install: (args) => [
+    {
+      role: "user",
+      content: {
+        type: "text",
+        text: `Please scan the following AI agent skill for security threats before I install it:\n\n${args.skill_url}\n\nUse the scan_skill tool from SkillsSafe to check for credential theft, prompt injection, data exfiltration, hidden zero-width characters, and other risks. Then summarise whether it is safe to install.`,
+      },
+    },
+  ],
+  review_skill_content: (args) => [
+    {
+      role: "user",
+      content: {
+        type: "text",
+        text: `Please review the following AI agent skill content and assess its security:\n\n\`\`\`\n${args.skill_content}\n\`\`\`\n\nUse the scan_skill tool from SkillsSafe to analyse it for threats such as prompt injection, credential theft, data exfiltration, and hidden characters. Provide a clear INSTALL / REVIEW / BLOCK recommendation.`,
+      },
+    },
+  ],
+};
 
 const RATE_LIMIT = new Map<string, { count: number; reset: number }>();
 
@@ -123,6 +184,23 @@ async function handleMethod(req: MCPRequest, lang: Lang): Promise<MCPResponse> {
 
     case "tools/list":
       return makeResult(id, { tools: TOOLS });
+
+    case "prompts/list":
+      return makeResult(id, { prompts: PROMPTS });
+
+    case "prompts/get": {
+      const promptName = (params.name as string) ?? "";
+      const promptArgs = ((params.arguments ?? {}) as Record<string, string>);
+      const messagesFn = PROMPT_MESSAGES[promptName];
+      if (!messagesFn) {
+        return makeError(id, -32602, `Unknown prompt: ${promptName}`);
+      }
+      const prompt = PROMPTS.find((p) => p.name === promptName)!;
+      return makeResult(id, {
+        description: prompt.description,
+        messages: messagesFn(promptArgs),
+      });
+    }
 
     case "tools/call": {
       const toolName = params.name as string;
