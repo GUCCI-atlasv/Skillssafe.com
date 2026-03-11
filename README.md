@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+[![smithery badge](https://smithery.ai/badge/gucci/SkillsSafe)](https://smithery.ai/servers/gucci/SkillsSafe)
+
 ## Getting Started
 
 First, run the development server:
