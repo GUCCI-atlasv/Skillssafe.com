@@ -16,6 +16,5 @@ startCommand:
         default: en
         x-from:
           query: lang
-    required: []
   exampleConfig:
     lang: en

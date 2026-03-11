@@ -174,7 +174,7 @@ async function handleMethod(req: MCPRequest, lang: Lang): Promise<MCPResponse> {
   switch (method) {
     case "initialize":
       return makeResult(id, {
-        protocolVersion: "2024-11-05",
+        protocolVersion: "2025-03-26",
         serverInfo: SERVER_INFO,
         capabilities: CAPABILITIES,
       });
