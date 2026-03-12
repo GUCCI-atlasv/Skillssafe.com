@@ -3,7 +3,7 @@
   "name": "com.skillssafe/scanner",
   "title": "SkillsSafe Security Scanner",
   "description": "AI skill security scanner. Detects prompt injection, credential theft, ClawHavoc. Free, no signup.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": {
     "url": "https://github.com/GUCCI-atlasv/Skillssafe.com",
     "source": "github"
