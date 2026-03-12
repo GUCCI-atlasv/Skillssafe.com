@@ -41,6 +41,7 @@ export default function Navbar() {
   const navLinks = [
     { href: `/${locale}`, label: t("scanner") },
     { href: `/${locale}/zero-width-detector`, label: t("zeroWidth") },
+    { href: `/${locale}/blog`, label: t("blog") },
     { href: `/${locale}/api-docs`, label: t("api") },
     { href: `/${locale}/integrate`, label: t("integrate") },
   ];

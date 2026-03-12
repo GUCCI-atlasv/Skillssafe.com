@@ -12,6 +12,7 @@ const messages = {
     api: "API Docs",
     mcp: "MCP Server",
     integrate: "Integrate",
+    blog: "Blog",
   },
   hero: {
     badge: "100% Free · No Signup · No Rate Limits for Humans",

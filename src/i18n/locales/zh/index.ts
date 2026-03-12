@@ -12,6 +12,7 @@ const messages = {
     api: "API 文档",
     mcp: "MCP Server",
     integrate: "接入指南",
+    blog: "博客",
   },
   hero: {
     badge: "100% 免费 · 无需注册 · 无速率限制",

@@ -12,6 +12,7 @@ const messages = {
     api: "API ドキュメント",
     mcp: "MCP サーバー",
     integrate: "統合ガイド",
+    blog: "ブログ",
   },
   hero: {
     badge: "100% 無料 · 登録不要 · レート制限なし",
