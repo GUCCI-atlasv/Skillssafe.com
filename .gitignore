@@ -19,6 +19,9 @@ Skillssafe.com/
 .env.local
 .env.*.local
 
+# Local docs (not for public repo)
+docs/
+
 # Misc
 .DS_Store
 *.pem
