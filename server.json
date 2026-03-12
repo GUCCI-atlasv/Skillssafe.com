@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.skillssafe/scanner",
   "title": "SkillsSafe Security Scanner",
-  "description": "The security layer for AI agents. Scans SKILL.md files, MCP configs, and system prompts for threats including credential theft, prompt injection, zero-width character attacks, and ClawHavoc malware indicators. Free, no API key required. Supports OpenClaw, Claude Code, Cursor, and Codex.",
+  "description": "AI skill security scanner. Detects prompt injection, credential theft, ClawHavoc. Free, no signup.",
   "version": "1.0.0",
   "repository": {
     "url": "https://github.com/GUCCI-atlasv/Skillssafe.com",
