@@ -13,5 +13,15 @@
       "type": "sse",
       "url": "https://mcp.skillssafe.com/sse"
     }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "skillssafe-mcp",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
   ]
 }
