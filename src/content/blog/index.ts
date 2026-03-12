@@ -1,5 +1,6 @@
 import type { BlogLocaleContent } from "./how-to-check-ai-skill-safety";
 import howToCheckAiSkillSafety from "./how-to-check-ai-skill-safety";
+import zeroWidthCharacterAttacks from "./zero-width-character-attacks";
 
 export type { BlogLocaleContent };
 
@@ -21,7 +22,10 @@ export type BlogPostFull = BlogPostMeta & {
 
 export type SupportedLocale = "en" | "zh" | "ja";
 
-export const allPosts: BlogPostFull[] = [howToCheckAiSkillSafety];
+export const allPosts: BlogPostFull[] = [
+  howToCheckAiSkillSafety,
+  zeroWidthCharacterAttacks,
+];
 
 export function getPostBySlug(slug: string): BlogPostFull | undefined {
   return allPosts.find((p) => p.slug === slug);
