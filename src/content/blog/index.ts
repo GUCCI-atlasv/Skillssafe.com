@@ -1,6 +1,7 @@
 import type { BlogLocaleContent } from "./how-to-check-ai-skill-safety";
 import howToCheckAiSkillSafety from "./how-to-check-ai-skill-safety";
 import zeroWidthCharacterAttacks from "./zero-width-character-attacks";
+import clawhubHightower6euMaliciousSkills from "./clawhub-hightower6eu-malicious-skills";
 
 export type { BlogLocaleContent };
 
@@ -23,6 +24,7 @@ export type BlogPostFull = BlogPostMeta & {
 export type SupportedLocale = "en" | "zh" | "ja";
 
 export const allPosts: BlogPostFull[] = [
+  clawhubHightower6euMaliciousSkills,
   howToCheckAiSkillSafety,
   zeroWidthCharacterAttacks,
 ];
